@@ -305,6 +305,32 @@ INSERT INTO `cms_position_content` (`id`, `position_id`, `title`, `thumb`, `url`
 (52, 5, '首款ARM Win10 PC发布时间确认', 'upload/2017/04/24/58fdea64ae321.jpg', NULL, 25, 0, 1, 1493035679, 0),
 (53, 5, 'Surface Pro 3专属固件更新', 'upload/2017/04/24/58fdeb7b1babe.jpg', NULL, 24, 0, 1, 1493035906, 0);
 
+
+
+--1、增加一个登记表：哪个人参加什么活动：用户名，活动名称，报名时间
+--2、增加一个活动表：活动ID，活动时间，活动名称，活动评论，活动详情，活动地址
+--报名表
+DROP TABLE IF EXISTS `cms_enroll`;
+CREATE TABLE `cms_enroll` (
+  `enroll_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `username` char(20) NOT NULL COMMENT '用户名',
+  `activity` varchar(40) NOT NULL COMMENT '活动名称',
+  `enroll_time` datetime  NOT NULL  COMMENT '报名时间',
+   PRIMARY KEY (`enroll_id`)
+  ) ENGINE=innodb  DEFAULT CHARSET=utf8;
+
+--活动表
+DROP TABLE IF EXISTS `cms_activity`;
+CREATE TABLE `cms_activity` (
+  `activity_id` mediumint(8) unsigned NOT NULL AUTO_INCREMENT,
+  `activity_name` varchar(40) NOT NULL COMMENT '活动名称',
+  `activity_details` varchar(500) DEFAULT NULL COMMENT '活动详情',
+  `activity_time` datetime NOT NULL COMMENT '报名时间',
+  `activity_comment` varchar(500) DEFAULT NULL COMMENT '活动评论',
+  `activity_address` varchar(150) NOT NULL COMMENT '活动地址',
+  PRIMARY KEY (`activity_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
 -- Indexes for dumped tables
 --
